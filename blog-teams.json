@@ -1,0 +1,144 @@
+{"teams": [
+    {
+        "title": "Biochemistry / Bioinformatics / Bioethics",
+        "members": [ 
+            "Joy Wan",
+            "Jeremy Work",
+            "Anna Cunningham",
+            "Melissa Ko"
+        ],
+        "blurb": "Biochemistry and bioinformatics in society",
+        "description": "One of the greatest powers of research is harnessing symbiotic relationships among different fields, and biological research is no exception. With the growth of bioinformatics, a field dedicated to developing computational methods for biology, collecting extremely large datasets has become easier and more widespread. As a result, biochemical methods are increasingly informed by these datasets, and in turn, the complexity of biochemical systems provides an excellent source of material for bioinformatic analysis. Our group “Biochemistry and Bioinformatics in Society” is interested in exploring this interface between biochemistry and bioinformatics. Specifically, we will be sharing insights into the impact that discoveries from this interface have on various aspects of society, such as policy and healthcare/medicine.",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Biology (General)",
+        "members": [
+            "Ray Futia",
+            "Sandra Cristea",
+            "Connie Fung",
+            "Carlos Medina",
+            "Jonathon Wosen"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Cell Biology",
+        "members": [
+            "Samantha Piekos",
+            "Saumya Sankaran",
+            "Matias Kaplan",
+            "Fiorella Grandi",
+            "Jenny Hsu",
+            "Amy Tarangelo"
+        ],
+        "blurb": "Studying the building blocks of life",
+        "description": "All organisms are composed of one or more cells. Although most living things we see are multicellular (made up of many cells) these are only a small fraction of all organisms on Earth. The vast majority of organisms are unicellular (only one cell), like the bacteria in your gut or the yeast that brew your beer. We humans are multicellular organisms made up of 3 trillion cells with more than 200 different cell types! The cost of this complexity is that when one or more cell types fail to do their job we get sick.<br /><br />Cell biology seeks to understand how cells work and what happens when something goes wrong in a cell. By identifying what is causing a cell to not do its job, scientists can get a better idea about the inner life of the cell. They can also identify targets for therapies to fix what is wrong with the cell. These articles encompass the study of everything from tiny cellular machines to entire organs.",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Genomics",
+        "members": [
+            "Alicia Schep",
+            "Ragini Phansalkar",
+            "Ben Kotopka",
+            "Piper Keyes"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Immune System",
+        "members": [
+            "Kelly Jane McGill",
+            "Bryan Xie",
+            "Jiaying Toh",
+            "Miles Linde"
+        ],
+        "blurb": "The scoop on your body's Department of Defense",
+        "description": "We live in a world filled with bacteria, viruses, and other deadly pathogens. In fact, many of them are trying to invade your body right now.  If this thought makes you nervous, feel reassured that your body has its own Department of Defense - your immune system. This network works hard round the clock to protect you from harmful invaders. When a pathogen launches an attack, your immune system organizes a beautifully coordinated counter-attack to destroy the pathogen and keep you healthy. Unfortunately, your immune system can make mistakes, including: not destroying diseased or harmful cells (infections and cancer), reacting to non-harmful substances (allergies), or going rogue and attacking your own cells (autoimmune diseases). The immune system is fascinating and complex, and we want to share with you what’s going on in the field of immunology.",
+        "logo-file": "images/immune-system-logo.png"
+    },
+
+    {
+        "title": "Marine Biology",
+        "members": [
+            "Diana LaScala-Gruenewald",
+            "Nat Clarke",
+            "Natalie Low",
+            "Julia Mason",
+            "Elan Joseph Portner",
+            "Diana Li",
+            "David Cade",
+            "Hannnah Rosen"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Math/Physics/Quantitative Biology",
+        "members": [
+            "Bruno Beltran"
+            "Jay Bhasin"
+            "KC Farrell"
+            "Ilana Arbisser"
+            "Katie Bodner"
+            "Rohan Mehta"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Monumental Scientific Discoveries",
+        "members": [
+            "Julien Roth",
+            "Kyler Lugo",
+            "Andrea Chaikovsky",
+            "Susanna Brantley",
+            "Amanda Papakyrikos",
+            "Gillie Agmon"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Neuroscience",
+        "members": [
+            "Themasap Khan"
+            "Joshua Eggold"
+            "Michelle Pang"
+            "Johanna O'Day"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    },
+
+    {
+        "title": "Translational Biology",
+        "members": [
+            "Alyssa Kaiser,
+            "Leighton Daigh",
+            "Sarah Barnes",
+            "Chelsea Kliebert",
+            "Alexa Wnorowski"
+        ],
+        "blurb": "Biology is awesome!",
+        "description": "Biology is awesome!",
+        "logo-file": "images/biochem"
+    }
+]}
+
