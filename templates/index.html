@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<!-- Made into Jinja2 template by Bruno Beltran
+     Modifications free for personal and commercial use under the CCA 3.0
+     license (html5up.net/license)
+-->
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
+<!-- top level jinja input variables: "thedish", "teams" and "posts", which should be
+     of types Class TheDish, array of Class Team, and array of Class Post, respectively.
+-->
+<html>
+	<head>
+		<title>The Dish on Science</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!-- open graph tags allow e.g. facebook to show a preview of the site -->
+        <meta property="og:url"           content="{{ thedish.url }}" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="{{ thedish.official_name }}" />
+        <meta property="og:description"   content="{{ thedish.long_name }}" />
+        <!-- <meta property="og:description"   content="The Dish on Science: As Told by Graduate Students" /> -->
+        <meta property="og:image" content="{{ thedish.logo_src }}" />
+	</head>
+	<body>
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Header -->
+            <header id="header">
+                <h1><a href="#">{{ thedish.official_name }}</a></h1>
+                <nav class="links">
+                    <ul>
+                        <li><a href="science-dictionary">Science Dictionary</a></li>
+                        <li><a href="#about-us">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <nav class="main">
+                    <ul>
+                        <!-- <li class="search">
+                            <a class="fa-search" href="#search">Search</a>
+                            <form id="search" method="get" action="#">
+                                <input type="text" name="query" placeholder="Search" />
+                            </form>
+                        </li> -->
+                        <li class="menu">
+                            <a class="fa-bars" href="#menu">Menu</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+
+            <!-- Menu -->
+            <section id="menu">
+                <!--
+                <!-- Search -->
+                    <section>
+                        <form class="search" method="get" action="#">
+                            <input type="text" name="query" placeholder="Search" />
+                        </form>
+                    </section>
+                -->
+
+                <!-- Links -->
+                <section>
+                    <ul class="links">
+                        {% for team in teams %}
+                        <li>
+                            <a href="{{ team.url }}">
+                                <h3>{{ team.name }}</h3>
+                                <p>{{ team.blurb }}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+
+                <!-- Actions -->
+                <!--
+                    <section>
+                        <ul class="actions vertical">
+                            <li><a href="#" class="button big fit">Log In</a></li>
+                        </ul>
+                    </section>
+                -->
+
+            </section>
+
+            <!-- Main -->
+            <div id="main">
+{% with %}
+    {% set num_recent_posts = 10 %}
+    {% for post in posts.most_recent(num_recent_posts) %}
+                <!-- Post -->
+                    <article class="post">
+                        <header>
+                            <div class="title">
+                                <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                                <p>{{ post.blurb }}</p>
+                            </div>
+                            <div class="meta">
+                                <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
+        {% for author in post.authors %}
+                                <a href="#" class="author"><span class="name">{{ author.name }}</span><img src="{{ author.headshot_src }}" alt="" /></a>
+        (% endfor %}
+                            </div>
+                        </header>
+                        <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
+                        <p>{{ post.description }}</p>
+                        <footer>
+                            <ul class="actions">
+                                <li><a href="{{ post.url }}" class="button big">Continue Reading</a></li>
+                            </ul>
+                            <ul class="stats">
+                                {% for team in post.teams %}
+                                <li><a href="{{ team.url }}">General</a></li>
+                                {% endfor %}
+                                <li><div class="fb-like"
+                                    data-href="{{ post.absolute_url }}"
+                                    data-layout="standard"
+                                    data-action="like"
+                                    data-show-faces="true"></div>
+                                </li>
+                                <li><a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="{{ post.absolute_url }}" data-via="Dish_on_Science">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                </li>
+                                <li><a href="https://twitter.com/Dish_on_Science" class="twitter-follow-button" data-show-count="false">Follow @Dish_on_Science</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                                </li>
+                                <!-- if we wanted to have our own unpoliced like system...
+                                <li><a href="#" class="icon fa-heart">28</a></li>
+                                <li><a href="#" class="icon fa-comment">128</a></li>
+                                -->
+                            </ul>
+                        </footer>
+                    </article>
+    {% endfor %}
+{% endwith %}
+
+            <!--
+                <!-- Pagination -->
+                    <ul class="actions pagination">
+                        <li><a href="" class="disabled button big previous">Previous Page</a></li>
+                        <li><a href="#" class="button big next">Next Page</a></li>
+                    </ul>
+            -->
+
+            </div>
+
+            <!-- Sidebar -->
+            <section id="sidebar">
+
+                <!-- Intro -->
+                <section id="intro">
+                    <a href="/" class="logo"><img src="{{ thedish.logo_src }}" alt="" /></a>
+                    <header>
+                        <h2>{{ thedish.official_name }}</h2>
+                        <p>{{ thedish.subtitle }}</p>
+                    </header>
+                </section>
+
+                <!-- Mini Posts -->
+                <section>
+                    <h2>Most Popular</h2>
+                    <div class="mini-posts">
+{% with %}
+    {% set num_popular_posts_big = 5 %}
+    {% set num_popular_posts_small = 5 %}
+    {% for post in posts.most_popular(num_popular_posts_big + num_popular_posts_small) %}
+        {% if loop.index < num_popular_posts_big %}
+                    <!-- Mini Post -->
+                        <article class="mini-post">
+                            <header>
+                                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                                <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
+            {% for author in post.authors %}
+                                <a href="#" class="author"><<img src="{{ post.author.headshot_src }}" alt="" /></a>
+            {% endfor %}
+                            </header>
+                            <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
+                        </article>
+        {% endif %}
+        {% if loop.index == num_popular_posts_big + 1 %}
+                    </div>
+                </section>
+
+                <!-- Posts List -->
+                <section>
+                    <ul class="posts">
+        {% endif %}
+        {% if loop.index >= num_popular_posts_big and loop.index < num_popular_posts_small %}
+                    <!-- Post -->
+                        <li>
+                            <article>
+                                <header>
+                                    <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                                    <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
+                                </header>
+                                <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
+                            </article>
+                        </li>
+        {% endif %}
+    {% endfor %}
+{% endwith %}
+                    </ul>
+                </section>
+
+                <!-- About -->
+                <section class="blurb">
+                    <h2 id="about-us" >About</h2>
+                    <p id="about-us-blurb">{{ thedish.blurb }}</p>
+                    <p id="about-us-description">{{ thedish.description }}</p>
+                    <ul class="actions">
+                        <li><a href="#" class="button">Learn More</a></li>
+                        <li><a href="#" class="button">Show Less</a></li>
+                    </ul>
+                </section>
+
+                <!-- Footer -->
+                <section id="footer">
+                    <ul class="icons">
+                        <li><a href="https://twitter.com/Dish_on_Science" class="twitter-follow-button" data-show-count="false">Follow @Dish_on_Science</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        </li>
+                        <li><a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="{{ post.absolute_url }}" data-via="Dish_on_Science">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                        </li>
+                        <li><div class="fb-like"
+                            data-href="{{ post.absolute_url }}"
+                            data-layout="standard"
+                            data-action="like"
+                            data-show-faces="true"></div>
+                        </li>
+                        <!--
+                        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+                        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+                        -->
+                    </ul>
+                    <p id="contact" class="copyright">&copy; Bruno Beltran. Design: <a href="http://html5up.net">HTML5 UP</a>.Webmaster: b r u n o b e l t r a n 0 + t h e d i s h @ g m a i l . c o m</p>
+                </section>
+
+            </section>
+
+        </div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

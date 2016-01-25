@@ -107,7 +107,8 @@
 									</div>
 									<div class="meta">
 										<time class="published" datetime="2015-11-01">November 1, 2015</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<a class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
+										<a class="author"><span class="name">Jane Doe</span><img src="images/avatar.jpg" alt="" /></a>
 									</div>
 								</header>
 								<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
@@ -515,12 +516,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 							<section>
 								<div class="mini-posts">
 
+                                <h2>Most Popular</h2>
 									<!-- Mini Post -->
 										<article class="mini-post">
 											<header>
 												<h3><a href="#">Vitae sed condimentum</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
-												<a href="#" class="author"><img src="images/avatar.jpg" alt="" /></a>
+												<a class="author"><img src="images/avatar.jpg" alt="" /></a>
 											</header>
 											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
 										</article>
