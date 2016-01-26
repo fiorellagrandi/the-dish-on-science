@@ -18,7 +18,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!-- open graph tags allow e.g. facebook to show a preview of the site -->
@@ -36,10 +36,9 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-
 		<!-- Wrapper -->
         <div id="wrapper">
 
@@ -70,8 +69,8 @@
 
             <!-- Menu -->
             <section id="menu">
-                <!--
                 <!-- Search -->
+                <!--
                     <section>
                         <form class="search" method="get" action="#">
                             <input type="text" name="query" placeholder="Search" />
@@ -107,8 +106,7 @@
             <!-- Main -->
             <div id="main">
 {% with %}
-    {% set num_recent_posts = 10 %}
-    {% for post in posts.most_recent(num_recent_posts) %}
+    {% for post in recent_posts %}
                 <!-- Post -->
                     <article class="post">
                         <header>
@@ -120,7 +118,7 @@
                                 <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
         {% for author in post.authors %}
                                 <a href="#" class="author"><span class="name">{{ author.name }}</span><img src="{{ author.headshot_src }}" alt="" /></a>
-        (% endfor %}
+        {% endfor %}
                             </div>
                         </header>
                         <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
@@ -131,8 +129,9 @@
                             </ul>
                             <ul class="stats">
                                 {% for team in post.teams %}
-                                <li><a href="{{ team.url }}">General</a></li>
+                                <li><a href="{{ team.url }}">{{ team.name }}</a></li>
                                 {% endfor %}
+                                <!--
                                 <li><div class="fb-like"
                                     data-href="{{ post.absolute_url }}"
                                     data-layout="standard"
@@ -145,6 +144,7 @@
                                 <li><a href="https://twitter.com/Dish_on_Science" class="twitter-follow-button" data-show-count="false">Follow @Dish_on_Science</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                                 </li>
+                                -->
                                 <!-- if we wanted to have our own unpoliced like system...
                                 <li><a href="#" class="icon fa-heart">28</a></li>
                                 <li><a href="#" class="icon fa-comment">128</a></li>
@@ -155,12 +155,12 @@
     {% endfor %}
 {% endwith %}
 
+            <!-- Pagination -->
             <!--
-                <!-- Pagination -->
-                    <ul class="actions pagination">
-                        <li><a href="" class="disabled button big previous">Previous Page</a></li>
-                        <li><a href="#" class="button big next">Next Page</a></li>
-                    </ul>
+                <ul class="actions pagination">
+                    <li><a href="" class="disabled button big previous">Previous Page</a></li>
+                    <li><a href="#" class="button big next">Next Page</a></li>
+                </ul>
             -->
 
             </div>
@@ -184,7 +184,7 @@
 {% with %}
     {% set num_popular_posts_big = 5 %}
     {% set num_popular_posts_small = 5 %}
-    {% for post in posts.most_popular(num_popular_posts_big + num_popular_posts_small) %}
+    {% for post in popular_posts %}
         {% if loop.index < num_popular_posts_big %}
                     <!-- Mini Post -->
                         <article class="mini-post">
@@ -192,7 +192,7 @@
                                 <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                                 <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
             {% for author in post.authors %}
-                                <a href="#" class="author"><<img src="{{ post.author.headshot_src }}" alt="" /></a>
+                                <a href="#" class="author"><<img src="{{ post.authors.headshot_src }}" alt="" /></a>
             {% endfor %}
                             </header>
                             <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
@@ -214,7 +214,7 @@
                                     <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                                     <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
                                 </header>
-                                <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
+                                <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_square_src }}" alt="" /></a>
                             </article>
                         </li>
         {% endif %}
@@ -224,8 +224,8 @@
                 </section>
 
                 <!-- About -->
-                <section class="blurb">
-                    <h2 id="about-us" >About</h2>
+                <section id="about-us" class="blurb">
+                    <h2 >About</h2>
                     <p id="about-us-blurb">{{ thedish.blurb }}</p>
                     <p id="about-us-description">{{ thedish.description }}</p>
                     <ul class="actions">
@@ -237,27 +237,34 @@
                 <!-- Footer -->
                 <section id="footer">
                     <ul class="icons">
+                        <!--
+                        <li><div
+                            style="vertical-align:top;zoom:1;*display:inline"
+                            class="fb-like"
+                            data-href="https://developers.facebook.com/docs/plugins/"
+                            data-layout="button" data-action="like"
+                            data-show-faces="false"
+                            data-share="false"></div>
+                        </li>
                         <li><a href="https://twitter.com/Dish_on_Science" class="twitter-follow-button" data-show-count="false">Follow @Dish_on_Science</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                         </li>
                         <li><a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="{{ post.absolute_url }}" data-via="Dish_on_Science">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                         </li>
-                        <li><div class="fb-like"
-                            data-href="{{ post.absolute_url }}"
-                            data-layout="standard"
-                            data-action="like"
-                            data-show-faces="true"></div>
-                        </li>
+                        -->
+                        <li><a href="https://twitter.com/share?text=%40Dish_on_Science%20Really%20cool%20science:&url=http://thedishonscience.com" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a
+                            href="http://www.facebook.com/sharer.php?u={{ thedish.url }}" class="fa-facebook"><span class="label">Facebook</span></a></li>
                         <!--
-                        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
                         <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
                         <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
                         <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
                         -->
                     </ul>
-                    <p id="contact" class="copyright">&copy; Bruno Beltran. Design: <a href="http://html5up.net">HTML5 UP</a>.Webmaster: b r u n o b e l t r a n 0 + t h e d i s h @ g m a i l . c o m</p>
+                    <p id="contact" class="copyright">&copy; Bruno Beltran. Design: <a href="http://html5up.net">HTML5 UP</a>.
+                    <br/>
+                    Webmaster: b r u n o b e l t r a n 0 + t h e d i s h @ g m a i l . c o m</p>
                 </section>
 
             </section>

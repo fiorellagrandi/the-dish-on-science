@@ -1,0 +1,15 @@
+{
+    "url_title": "anti-vaccine-network-sir-model",
+    "publication_date": "2016-01-26",
+    "authors": [{
+        "name": "Rohan Sushrut Mehta",
+        "headshot_src": "/images/hedgehog.png"
+    }],
+    "featured_image_src": "/images/feature-placeholder.jpg",
+    "featured_image_square_src": "/images/square-placeholder.jpg",
+    "description": "A pretty long description of the article, which goes into about as much detail as a poster abstract would. Keep below 50 words if possible.",
+    "blurb": "This article should be read!",
+    "title": "Network SIR Models Predict the Spread of Anti-Vaccination Sentiment Across Social Networks",
+    "teams": "forty-two"
+}
+
