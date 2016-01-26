@@ -109,6 +109,29 @@
 					.on('-large', function() {
 						$intro.prependTo($sidebar);
 					});
+        // About us
+            var $read_more = $('#read-more'),
+                $read_less = $('#read-less'),
+                $about_short = $('#about-us-blurb'),
+                $about_long = $('#about-us-description');
+
+            $read_more
+                .on('click', function(event) {
+                    event.preventDefault();
+                    $read_less.toggleClass('hidden');
+                    $read_more.toggleClass('hidden');
+                    //$about_short.toggleClass('hidden');
+                    $about_long.toggleClass('hidden');
+                });
+            $read_less
+                .on('click', function(event) {
+                    event.preventDefault();
+                    $read_less.toggleClass('hidden');
+                    $read_more.toggleClass('hidden');
+                    //$about_short.toggleClass('hidden');
+                    $about_long.toggleClass('hidden');
+                });
+
 
 	});
 

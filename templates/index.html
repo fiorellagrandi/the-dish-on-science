@@ -81,6 +81,7 @@
                 <!-- Links -->
                 <section>
                     <ul class="links">
+                        <li><a class="fa-bars" href="#menu"> Close Menu</a></li>
                         {% for team in teams %}
                         <li>
                             <a href="{{ team.url }}">
@@ -226,12 +227,15 @@
                 <!-- About -->
                 <section id="about-us" class="blurb">
                     <h2 >About</h2>
+                    <span>
                     <p id="about-us-blurb">{{ thedish.blurb }}</p>
-                    <p id="about-us-description">{{ thedish.description }}</p>
+                    <p class="hidden" id="about-us-description">{{ thedish.description }}</p>
                     <ul class="actions">
-                        <li><a href="#" class="button">Learn More</a></li>
-                        <li><a href="#" class="button">Show Less</a></li>
+                        <li><a href="#" id="read-more" class="button">Learn More</a></li>
+                        <br />
+                        <li><a href="#" id="read-less" class="hidden button">Show Less</a></li>
                     </ul>
+                    </span>
                 </section>
 
                 <!-- Footer -->

@@ -3391,6 +3391,15 @@
 					border-bottom: 0;
 				}
 
+                    #menu .fa-bars {
+                        -moz-osx-font-smoothing: grayscale;
+                        -webkit-font-smoothing: antialiased;
+                        font-family: FontAwesome;
+                        font-style: normal;
+                        font-weight: normal;
+                        text-transform: none !important;
+                    }
+
 					#menu .links > li a h3 {
 						-moz-transition: color 0.2s ease;
 						-webkit-transition: color 0.2s ease;
@@ -3434,3 +3443,8 @@
 			}
 
 		}
+
+/* global classes */
+    .hidden {
+        display: none;
+    }
