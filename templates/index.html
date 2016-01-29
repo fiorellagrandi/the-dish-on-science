@@ -14,11 +14,12 @@
 -->
 <html>
 	<head>
-		<title>The Dish on Science</title>
+    <title>{% block title %}The Dish on Science{% endblock %}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="/assets/css/main.css" />
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!-- open graph tags allow e.g. facebook to show a preview of the site -->
@@ -30,7 +31,7 @@
         <meta property="og:image" content="{{ thedish.logo_src }}" />
 	</head>
 	<body>
-        <!-- Load Facebook SDK for JavaScript -->
+        <!-- Load Facebook SDK for JavaScript
         <div id="fb-root"></div>
         <script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -39,12 +40,13 @@
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
+        -->
 		<!-- Wrapper -->
         <div id="wrapper">
 
             <!-- Header -->
             <header id="header">
-                <h1><a href="#">{{ thedish.official_name }}</a></h1>
+                <h1><a href="/">{{ thedish.official_name }}</a></h1>
                 <nav class="links">
                     <ul>
                         <li><a href="science-dictionary">Science Dictionary</a></li>
@@ -61,7 +63,10 @@
                             </form>
                         </li> -->
                         <li class="menu">
-                            <a class="fa-bars" href="#menu">Menu</a>
+                        <!-- change to id=menu, href=#, and use jquery to bind
+                        the function so it works regardless of what page we're
+                        on -->
+                        <a class="fa-bars" href="#menu">Topics</a>
                         </li>
                     </ul>
                 </nav>
@@ -81,10 +86,10 @@
                 <!-- Links -->
                 <section>
                     <ul class="links">
-                        <li><a class="fa-bars" href="#menu"> Close Menu</a></li>
+                        <li><a class="fa-bars" href="#menu">  Close Menu</a></li>
                         {% for team in teams %}
                         <li>
-                            <a href="{{ team.url }}">
+                            <a href="/topics/{{ team.url }}">
                                 <h3>{{ team.name }}</h3>
                                 <p>{{ team.blurb }}</p>
                             </a>
@@ -106,6 +111,12 @@
 
             <!-- Main -->
             <div id="main">
+{% if error %}
+                <h2 class="error-message"> Error: {{ error }}</h2>
+{% endif %}
+{% block main_header %}
+{% endblock %}
+{% block main %}
 {% with %}
     {% for post in recent_posts %}
                 <!-- Post -->
@@ -118,7 +129,7 @@
                             <div class="meta">
                                 <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
         {% for author in post.authors %}
-                                <a href="#" class="author"><span class="name">{{ author.name }}</span><img src="{{ author.headshot_src }}" alt="" /></a>
+                                <a href="{{ author.headshot_src }}" class="author"><span class="name">{{ author.name }}</span><img src="{{ author.headshot_src }}" alt="" /></a>
         {% endfor %}
                             </div>
                         </header>
@@ -130,7 +141,7 @@
                             </ul>
                             <ul class="stats">
                                 {% for team in post.teams %}
-                                <li><a href="{{ team.url }}">{{ team.name }}</a></li>
+                                <li><a href="/topics/{{ team.url }}">{{ team.name }}</a></li>
                                 {% endfor %}
                                 <!--
                                 <li><div class="fb-like"
@@ -164,6 +175,7 @@
                 </ul>
             -->
 
+{% endblock %}
             </div>
 
             <!-- Sidebar -->
@@ -193,7 +205,7 @@
                                 <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                                 <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
             {% for author in post.authors %}
-                                <a href="#" class="author"><<img src="{{ post.authors.headshot_src }}" alt="" /></a>
+                                <a href="{{ author.headshot_src }}" class="author"><img src="{{ post.authors.headshot_src }}" alt="" /></a>
             {% endfor %}
                             </header>
                             <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
@@ -258,12 +270,11 @@
                         </li>
                         -->
                         <li><a href="https://twitter.com/share?text=%40Dish_on_Science%20Really%20cool%20science:&url=http://thedishonscience.com" class="fa-twitter"><span class="label">Twitter</span></a></li>
-                        <li><a
-                            href="http://www.facebook.com/sharer.php?u={{ thedish.url }}" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="http://www.facebook.com/sharer.php?u={{ thedish.url }}" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="mailto:brunobeltran0+dishwebsite@gmail.com" class="fa-envelope"><span class="label">Email</span></a></li>
                         <!--
                         <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
                         <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
-                        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
                         -->
                     </ul>
                     <p id="contact" class="copyright">&copy; Bruno Beltran. Design: <a href="http://html5up.net">HTML5 UP</a>.

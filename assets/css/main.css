@@ -2876,6 +2876,12 @@
 		text-transform: uppercase;
 	}
 
+/* Error messages */
+    .error-message {
+        color: #8C1515;
+    }
+
+
 /* Table */
 
 	.table-wrapper {
@@ -3238,22 +3244,122 @@
 
 		}
 
+/* Team page */
+
+	#team {
+		padding: 3em 3em 1em 3em ;
+		background: #ffffff;
+		border: solid 1px rgba(160, 160, 160, 0.3);
+		margin: 0 0 3em 0;
+		position: relative;
+	}
+        /* uncomment out the stuff in the first two .logo sessions to get
+         * the fancy hexagonalized logo */
+	#team .logo {
+		border-bottom: 0;
+		display: inline-block;
+		margin: 0 0 1em 0;
+		/*overflow: hidden;*/
+		position: relative;
+		width: 8em;
+	}
+
+		#team .logo:before {
+            /*
+			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,0 100,0 100,25 50,0 0,25' style='fill:%23f4f4f4' /%3E%3Cpolygon points='0,100 100,100 100,75 50,100 0,75' style='fill:%23f4f4f4' /%3E%3C/svg%3E");
+			background-position: top left;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+            */
+			content: '';
+			display: block;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+
+		#team .logo img {
+			display: block;
+			margin-left: -0.25em;
+			width: 6.5em;
+		}
+
+	#team header h2 {
+		font-size: 2em;
+		font-weight: 900;
+        display: inline-block;
+	}
+
+	#team header p {
+		font-size: 0.8em;
+        display: inline-block;
+	}
+
+	@media screen and (max-width: 1280px) {
+
+		#team {
+			margin: 0 0 3em 0;
+			text-align: center;
+		}
+
+			#team header h2 {
+				font-size: 2em;
+			}
+
+			#team header p {
+				font-size: 0.7em;
+			}
+
+	}
+
+	@media screen and (max-width: 736px) {
+
+		#team {
+			margin: 0 0 1.5em 0;
+			padding: 1.25em 0;
+		}
+
+			#team > :last-child {
+				margin-bottom: 0;
+			}
+
+			#team .logo {
+				margin: 0 0 0.5em 0;
+			}
+
+			#team header h2 {
+				font-size: 1.25em;
+			}
+
+			#team header > :last-child {
+				margin-bottom: 0;
+			}
+
+	}
+
+
 /* Intro */
 
+        /* uncomment out the stuff in the first two .logo sessions to get
+         * the fancy hexagonalized logo */
 	#intro .logo {
 		border-bottom: 0;
 		display: inline-block;
 		margin: 0 0 1em 0;
-		overflow: hidden;
+		/*overflow: hidden;*/
 		position: relative;
 		width: 4em;
 	}
 
 		#intro .logo:before {
+            /*
 			background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,0 100,0 100,25 50,0 0,25' style='fill:%23f4f4f4' /%3E%3Cpolygon points='0,100 100,100 100,75 50,100 0,75' style='fill:%23f4f4f4' /%3E%3C/svg%3E");
 			background-position: top left;
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
+            */
 			content: '';
 			display: block;
 			height: 100%;

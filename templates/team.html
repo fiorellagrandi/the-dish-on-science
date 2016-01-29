@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block title %} {{ team.name }} | {{ thedish.official_name }} {% endblock %}
+{% block main_header %}
+<section id="team">
+    <img class="logo" src="{{ team.logo_src }}" alt="" />
+    <header>
+        <h2>{{ team.name }}</h2>
+        <p>{{ team.blurb }}</p>
+    </header>
+    <p>{{ team.description }}</p>
+</section>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block title %} {{ post.title }} | {{ thedish.official_name }} {% endblock %}
+{% block main %}
+<article class="post">
+    <header>
+        <div class="title">
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            <p>{{ post.blurb }}</p>
+        </div>
+        <div class="meta">
+            <time class="published" datetime="{{ post.publication_date.strftime('%Y-%m-%d') }}">{{ post.publication_date.strftime('%B %d, %Y') }}</time>
+{% for author in post.authors %}
+            <a href="#" class="author"><span class="name">{{ author.name }}</span><img src="{{ author.headshot_src }}" alt="" /></a>
+{% endfor %}
+        </div>
+    </header>
+    <a href="{{ post.url }}" class="image featured"><img src="{{ post.featured_image_src }}" alt="" /></a>
+    {{ post.html|safe }}
+    <footer>
+        <ul class="stats">
+            {% for team in post.teams %}
+            <li><a href="/topics/{{ team.url }}">{{ team.name }}</a></li>
+            {% endfor %}
+            <!--
+            <li><div class="fb-like"
+                data-href="{{ post.absolute_url }}"
+                data-layout="standard"
+                data-action="like"
+                data-show-faces="true"></div>
+            </li>
+            <li><a href="https://twitter.com/share" class="twitter-share-button"{count} data-url="{{ post.absolute_url }}" data-via="Dish_on_Science">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </li>
+            <li><a href="https://twitter.com/Dish_on_Science" class="twitter-follow-button" data-show-count="false">Follow @Dish_on_Science</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </li>
+            -->
+            <!-- if we wanted to have our own unpoliced like system...
+            <li><a href="#" class="icon fa-heart">28</a></li>
+            <li><a href="#" class="icon fa-comment">128</a></li>
+            -->
+        </ul>
+    </footer>
+</article>
+
+{% endblock %}
