@@ -7,7 +7,7 @@
         <h2>{{ team.name }}</h2>
         <p>{{ team.blurb }}</p>
     </header>
-    <p>{{ team.description }}</p>
+    <p>{{ team.description|safe }}</p>
 </section>
 
 {% endblock %}
