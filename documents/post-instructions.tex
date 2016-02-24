@@ -1,0 +1,282 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Instructions for Formatting and Posting Articles to
+% thedishonscience.com
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Edit the title below to update the display in My Documents
+\title{How to Post}
+%
+%%% Preamble
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+
+\usepackage[english]{babel}                                                            % English language/hyphenation
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{forest}
+
+
+%%% Custom sectioning
+\usepackage{sectsty}
+\allsectionsfont{\centering \normalfont\scshape}
+
+
+%%% Custom headers/footers (fancyhdr package)
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{}                                            % No page header
+\fancyfoot[L]{}                                            % Empty
+\fancyfoot[C]{}                                            % Empty
+\fancyfoot[R]{\thepage}                                    % Pagenumbering
+\renewcommand{\headrulewidth}{0pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{0pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}        % Equationnumbering: section.eq#
+\numberwithin{figure}{section}            % Figurenumbering: section.fig#
+\numberwithin{table}{section}                % Tablenumbering: section.tab#
+
+
+%%% Maketitle metadata
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}     % Horizontal rule
+
+\title{\
+        %\vspace{-1in}
+        \usefont{OT1}{bch}{b}{n}
+        % \normalfont{}\normalsize \textsc{School of random department names} \\ [25pt]
+        \horrule{0.5pt} \\[0.4cm]
+        \huge How to Post on \\ \texttt{thedishonscience.org} \\
+        \horrule{2pt} \\[0.5cm]
+}
+\author{\
+        \normalfont{}                     \normalsize
+        Bruno Beltran\\[-3pt]             \normalsize
+        \today
+}
+\date{}
+
+
+%%% Begin document
+\begin{document}
+\maketitle
+\section{What Can Go in My Article?}
+The Dish on Science is a Stanford graduate student blogging group.
+As a Stanford graduate student group, we must adhere to Stanford's
+\href{https://adminguide.stanford.edu/chapter-6/subchapter-2/policy-6-2-1}{``Computer
+and Network Usage Policy''}. In short, this means that in your official writing
+for the Dish:\@
+\begin{enumerate}
+    \item DO NOT expose anyone's online identity.
+    \item DO NOT use The Dish to advocate for yourself or a business you know,
+        even in passing.
+    \item DO NOT explicitly advocate for any political group.
+    \item DO NOT violate copyright law (see
+        \hyperref[how-to-not-violate-copyright]{below} for details).
+\end{enumerate}
+
+As long as you keep to the simplified guidelines above and maintain a
+professional tone, we should not have any problems. If in doubt, however,
+consult the full university policy linked above.
+
+\section{How to Format a Post}
+The Dish's website is maintained by the editor as part of his or her duties. A
+large part of this is automated to ensure consistency of design across the site.
+As such, we ask that all posts follow the following format \textit{exactly}.
+
+For an article with desired URL
+\texttt{http://www.dishonscience.org/posts/post-name-url}, the following folder structure is required. File names \textbf{should be exactly as indicated}:
+
+
+\begin{forest}
+  for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    before computing xy={l=15pt},
+  }
+[post-url-name
+  [images
+    [image1.png]
+    [image2.svg]
+    [\ldots{}]
+  ]
+  [post.md]
+  [post\_info.json ]
+]
+\end{forest}
+
+\subsection{How to Make \texttt{\textbf{post\_info.json}}}
+A full, working \texttt{post\_info.json} file can be found at
+nc\texttt{http://www.dishonscience.org/documents/example\_post\_info.json}.
+The required fields are:\@
+\begin{enumerate}
+    \item Post Title
+    \item Main Post Image
+    \item Post "Blurb"
+    \item Post Description
+\end{enumerate}
+
+The following (optional) fields are also allowed.
+
+
+\subsection{How to Make \texttt{\textbf{post.md}}}
+Please see the following email exchange for everything you need to know.
+
+\begin{verbatim}
+Hi Kelly,
+
+Simply export it to a picture and include the picture in the article.
+Remember that for pretty pictures on the web high quality PNG or SVG
+should be preferred.
+
+Cheers,
+
+Bruno
+
+
+On Fri, Jan 22, 2016 at 3:46 PM, Kelly Jane McGill <kmcgill@stanford.edu> wrote:
+> Hello,
+> Is it possible to include a pictorial chart or a smart chart from Word in Markdown format?
+> If not, do you have any suggestions?
+> I just want to create a visual way to sum up the main points but I would like to use different shapes, (not just a table of words)
+>
+> Thanks,
+> Kelly
+>
+> ________________________________________
+> From: lets-talk-science <lets-talk-science-bounces@lists.stanford.edu> on behalf of Bruno Beltran <brunobeltran0@gmail.com>
+> Sent: Wednesday, January 6, 2016 12:45 PM
+> To: lets-talk-science@mailman.stanford.edu
+> Subject: [lets-talk-science] Fwd: How to Format Finished Articles for   Publishing
+>
+> Hi all,
+>
+> Here's a question that I didn't think to address that will be relevant
+> to everyone.
+>
+> In order to insert an image into the document, simply use the name of
+> the image file (including any extensions, like .png, .jpg) as the
+> "link name". Since when they are published on the website, the images
+> will be in the same folder as the markdown, they will be correctly
+> included that way. You won't be able to do this when previewing the
+> document on the website I sent out, of course, but a good workaround
+> to make sure that it looks the way you want is to upload the image
+> somewhere like Dropbox or Google Drive while editing the final version
+> of the article and use a link to the uploaded version until you're
+> satisfied it looks correct, then simply change those links back to
+> just the file name before zipping it up and sending it over.
+>
+> Also, if you use any unorthodox methods to generate images, please
+> make sure that the final image is in a web-friendly format. If you
+> don't know that this means, just convert it to a PNG or JPEG file
+> before using it, to prevent it from messing up how the article looks
+> in different browsers, on phones, etc.
+>
+> Let me know if any of that is not clear.
+>
+> Best,
+>
+> Bruno
+>
+>
+> ---------- Forwarded message ----------
+> From: Kelly Jane McGill <kmcgill@stanford.edu>
+> Date: Wed, Jan 6, 2016 at 12:14 PM
+> Subject: Re: [lets-talk-science] How to Format Finished Articles for Publishing
+> To: Bruno Beltran <brunobeltran0@gmail.com>
+>
+>
+> How do you add your own charts or images (power point figures) to
+> markdown? Plain text gets rid of the image and if there is no link,
+> how can you add it to a markdown document?
+>
+> Thanks,
+> Kelly
+>
+> ________________________________________
+> From: lets-talk-science <lets-talk-science-bounces@lists.stanford.edu>
+> on behalf of Bruno Beltran <brunobeltran0@gmail.com>
+> Sent: Tuesday, January 5, 2016 8:26 PM
+> To: lets-talk-science@mailman.stanford.edu
+> Subject: [lets-talk-science] How to Format Finished Articles for Publishing
+>
+> Hey again guys!
+>
+> Short version: Please submit each article as a zipped folder
+> containing both all the media (e.g. pictures/figures) and a single
+> markdown file with the article's contents. You can learn how to use
+> markdown in approximately 143 seconds on
+> https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet and
+> test that your file looks good on https://stackedit.io/editor.
+>
+> Long version:
+>
+> A quick update on the file format we're going to want the articles in,
+> since some of you have started writing.
+>
+> Each group is free to (and should) use whatever format (e.g. Word,
+> plain text, LaTeX+git) makes it easiest for your groups to get the
+> articles written and reviewed. When it comes time for you to submit,
+> however, the process of making it look like you want will require that
+> you use a web-friendly format. In order to minimize the amount of work
+> this will take, we will use "Markdown" syntax to specify the article's
+> formatting. Don't be afraid, this does not involve programming,
+> learning a new language, or knowing how to cartwheel. The syntax will
+> be familiar to anyone that has posted in a forum, reddit, Github, or
+> other website that allows formatting comments/posts.
+>
+> The best way to explain how it works is to simply point you to a cheat
+> sheet that shows you how to do everything you could possibly want,
+> from italics and bolding to tables, links and images:
+>
+> https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+>
+> and a site that lets you type in markdown and shows you what it would
+> look like on the web, with some built in examples:
+>
+> https://stackedit.io/editor
+>
+> In practice, the only thing to keep in mind is that you'll need to put
+> two newlines (i.e. hit enter twice) every time you want to start a new
+> paragraph.
+>
+> Please, when submitting an article, put a single markdown or plain
+> text file (preferably with file ending ".md") in a folder with all the
+> pictures/videos/media that are going to be included in the article,
+> zip the folder, and send the zip file to me.
+>
+> Let me know if there are any questions, and I am happy to help both
+> with any technical difficulties that will inevitably arise and with
+> getting any particularly fancy formatting to work.
+\end{verbatim}
+
+\section{Copyright Law}
+
+This is fairly easy to summarize. If you didn't make it and it's not explicitly
+marked as Creative Commons (for reuse) or public domain from a credible source,
+then you have to ask the person that owns it for permission.
+
+In particular, this means that if you want to reproduce a figure from a journal,
+you \textbf{must} ask the journal's permission since usually the journal is the
+copyright holder and not the author.
+
+%%% End document
+\end{document}
