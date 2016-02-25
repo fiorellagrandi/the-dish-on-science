@@ -17,6 +17,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{forest}
+\usepackage{float}
 
 
 %%% Custom sectioning
@@ -40,6 +41,7 @@
 \numberwithin{equation}{section}        % Equationnumbering: section.eq#
 \numberwithin{figure}{section}            % Figurenumbering: section.fig#
 \numberwithin{table}{section}                % Tablenumbering: section.tab#
+\newcommand{\dishurl}[1]{\url{http://www.brunobeltran.org/#1}}
 
 
 %%% Maketitle metadata
@@ -50,7 +52,7 @@
         \usefont{OT1}{bch}{b}{n}
         % \normalfont{}\normalsize \textsc{School of random department names} \\ [25pt]
         \horrule{0.5pt} \\[0.4cm]
-        \huge How to Post on \\ \texttt{thedishonscience.org} \\
+        \huge How to Post on \\ \dishurl{} \\
         \horrule{2pt} \\[0.5cm]
 }
 \author{\
@@ -64,6 +66,13 @@
 %%% Begin document
 \begin{document}
 \maketitle
+
+\section{Important Notice}
+For now, the website is being hosted at \dishurl{}. Everywhere in this document where this
+URL is mentioned, it will be changed whenever we get our final URL, whatever
+that may be (probably to something like
+\url{http://dishonscience.stanford.edu/}).
+
 \section{What Can Go in My Article?}
 The Dish on Science is a Stanford graduate student blogging group.
 As a Stanford graduate student group, we must adhere to Stanford's
@@ -76,35 +85,57 @@ for the Dish:\@
         even in passing.
     \item DO NOT explicitly advocate for any political group.
     \item DO NOT violate copyright law (see
-        \hyperref[how-to-not-violate-copyright]{below} for details).
+        Section~\ref{sec:copyright} below for details).
 \end{enumerate}
 
 As long as you keep to the simplified guidelines above and maintain a
 professional tone, we should not have any problems. If in doubt, however,
-consult the full university policy linked above.
+consult the full university policy at
+\href{https://adminguide.stanford.edu/chapter-6/subchapter-2/policy-6-2-1}{https://adminguide.stanford.edu/chapter-6/subchapter-2/policy-6-2-1}.
+
+\section{Copyright Law}\label{sec:copyright}
+
+This is fairly easy to summarize. If you didn't make it, and it is not both from
+a credible source and explicitly marked as Creative Commons (for reuse) or
+public domain, then you have to ask the person that owns it for permission to
+use it.
+
+In particular, this means that if you want to reproduce a figure from a journal,
+you \textbf{must} ask the journal's permission since usually the journal is the
+copyright holder and not the author.
+
+As an important aside, realize that this document is not legally binding in any way and its author
+is not a lawyer, so please use your own best judgement as necessary to obey all
+relevant laws and regulations.
+
 
 \section{How to Format a Post}
 The Dish's website is maintained by the editor as part of his or her duties. A
 large part of this is automated to ensure consistency of design across the site.
 As such, we ask that all posts follow the following format \textit{exactly}.
 
+A minimal, correct example article can be found at
+\dishurl{documents/minimal-example-post}. A post that leverages all optional
+features of the website available without special requests can be found at
+\dishurl{documents/maximal-example-post}. In places where this document is
+ambiguous, these examples should serve as an official reference.
+
 For an article with desired URL
-\texttt{http://www.dishonscience.org/posts/post-name-url}, the following folder structure is required. File names \textbf{should be exactly as indicated}:
-
-
+\dishurl{posts/post-name-url}, the following folder structure is required.
+\begin{figure}[H]
 \begin{forest}
-  for tree={
+  for tree={%
     font=\ttfamily,
     grow'=0,
     child anchor=west,
     parent anchor=south,
     anchor=west,
     calign=first,
-    edge path={
-      \noexpand\path [draw, \forestoption{edge}]
-      (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+    edge path={%
+      \noexpand\path{} [draw, \forestoption{edge}]
+      (!u.south west) + (7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
     },
-    before typesetting nodes={
+    before typesetting nodes={%
       if n=1
         {insert before={[,phantom]}}
         {}
@@ -122,161 +153,144 @@ For an article with desired URL
   [post\_info.json ]
 ]
 \end{forest}
+\caption{Post folder structure guidelines.}\label{fig:folder-structure}
+\end{figure}
+
+The \texttt{post\_info.json} and \texttt{post.md} files must have
+\textbf{exactly those names}. The image files can be called anything, as long as
+they're correctly linked to in the article, but the
+folder containing them must be called \texttt{images}. See Section~\ref{sec:image-links}
+for how to correctly link to your images.
 
 \subsection{How to Make \texttt{\textbf{post\_info.json}}}
-A full, working \texttt{post\_info.json} file can be found at
-nc\texttt{http://www.dishonscience.org/documents/example\_post\_info.json}.
-The required fields are:\@
-\begin{enumerate}
-    \item Post Title
-    \item Main Post Image
-    \item Post "Blurb"
-    \item Post Description
-\end{enumerate}
+Please see the examples mentioned above for how to format the file. If what
+exactly should be changed or updated is not clear to you, the file is in the
+very popular \href{http://www.xul.fr/ajax-javascript-json.html}{JSON} file
+format, which is well explained in various places on the web, such as
+\url{http://www.xul.fr/ajax-javascript-json.html}.
 
-The following (optional) fields are also allowed.
+In what follows, all image links should be made relative to the article
+directory. More explicitly, please use
+\begin{verbatim}"./images/image-file-name.png"\end{verbatim}
+filling in the correct filename and extension (\texttt{.svg}, \texttt{.jpg},
+etc.) each time a link to an image file is required.
+
+\noindent{}The required fields are:\@
+\begin{itemize}
+    \item \emph{Post Title}: Try to keep below 200 characters.
+    \item \emph{Main Post Image}: A link to the main image that will be
+        displayed alongside links to the article and at the top of the article.
+    \item \emph{Post ``Blurb''}: A short, sub-sentence-long description of what
+        the article is about. If you want your article to have a subtitle, this
+        is the most appropriate place.
+    \item \emph{Post Description}: A short paragraph that will be displayed
+        beneath your article's image when listing articles. This should be your
+        call to action, and after reading this, a visitor to the site should
+        want to click on your article to read more. The text ``(Click to read
+        more\ldots{})'' will be automatically included after this description, so do
+        not include it yourself.
+    \item \emph{Team Name}: The official name of the team or teams that have edited the
+        post.
+\end{itemize}
+
+\noindent{}The following (optional) fields are also allowed.
+\begin{itemize}
+    \item \emph{Author name or names}: Please use your legal name to make this consistent. If
+        you submit one article as ``Bob Caldwell'' and another as ``Bobby
+        Caldwell'', there will be no way of assigning these to the same person.
+        If this field is omitted, the group name will be used as a stand in for
+        the author name.
+    \item \emph{Author nickname or nicknames}: One per author. This will be the name that is
+        actually displayed on the site next to your (optional) picture.
+    \item \emph{Author headshot or headshots}: This will be a link to the picture that will
+        display next to your name. You can either provide an image and link to
+        that file name inside the ``\texttt{images}'' folder, or use
+        ``\texttt{/images/headshot.png}'' for a picture of a cute hedgehog instead.
+
+        You can always check what the name of the file you provided is if you've
+        forgotten by looking for yourself at ``\dishurl{images/}''.
+        For example, after finding my picture at
+        ``\dishurl{/images/bruno-beltran-2015.png}'', I would use
+        ``\texttt{/images/bruno-beltran-2015.png}''.
+    \item \emph{Squared Post Image}: A link to a cropped version of the post image that
+        can be used as a thumbnail for the post. If this is not included, a
+        square thumbnail will automagically be generated from the ``Main Post Image''.
+\end{itemize}
 
 
 \subsection{How to Make \texttt{\textbf{post.md}}}
-Please see the following email exchange for everything you need to know.
 
-\begin{verbatim}
-Hi Kelly,
+\subsubsection{Basic Markdown}
 
-Simply export it to a picture and include the picture in the article.
-Remember that for pretty pictures on the web high quality PNG or SVG
-should be preferred.
+Each group is free to (and should) use whatever format (e.g.\ Word, plain text,
+LaTeX+git) makes it easiest for your groups to get the articles written and
+reviewed. When it comes time for you to submit, however, the process of making
+the article look like you want it to on the webpage will require that you use a web-friendly
+format. In order to minimize the amount of work this will take both for the
+authors and the editor, we will use ``Markdown'' syntax to specify the article's
+formatting. Don't be afraid, this does not involve programming, learning a new
+language, or knowing how to cartwheel. The syntax should feel familiar to anyone
+that has posted in a forum, on reddit, on Github, or on other website that allows
+formatting comments/posts.
 
-Cheers,
+The best way to explain how it works is to simply point you to a cheat
+sheet that shows you how to do everything you could possibly want,
+from italics and bolding to tables, links and images:
 
-Bruno
+\url{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}
 
+Here's a site that lets you type in markdown and shows you what it would
+look like on the web, with some built in examples.
 
-On Fri, Jan 22, 2016 at 3:46 PM, Kelly Jane McGill <kmcgill@stanford.edu> wrote:
-> Hello,
-> Is it possible to include a pictorial chart or a smart chart from Word in Markdown format?
-> If not, do you have any suggestions?
-> I just want to create a visual way to sum up the main points but I would like to use different shapes, (not just a table of words)
->
-> Thanks,
-> Kelly
->
-> ________________________________________
-> From: lets-talk-science <lets-talk-science-bounces@lists.stanford.edu> on behalf of Bruno Beltran <brunobeltran0@gmail.com>
-> Sent: Wednesday, January 6, 2016 12:45 PM
-> To: lets-talk-science@mailman.stanford.edu
-> Subject: [lets-talk-science] Fwd: How to Format Finished Articles for   Publishing
->
-> Hi all,
->
-> Here's a question that I didn't think to address that will be relevant
-> to everyone.
->
-> In order to insert an image into the document, simply use the name of
-> the image file (including any extensions, like .png, .jpg) as the
-> "link name". Since when they are published on the website, the images
-> will be in the same folder as the markdown, they will be correctly
-> included that way. You won't be able to do this when previewing the
-> document on the website I sent out, of course, but a good workaround
-> to make sure that it looks the way you want is to upload the image
-> somewhere like Dropbox or Google Drive while editing the final version
-> of the article and use a link to the uploaded version until you're
-> satisfied it looks correct, then simply change those links back to
-> just the file name before zipping it up and sending it over.
->
-> Also, if you use any unorthodox methods to generate images, please
-> make sure that the final image is in a web-friendly format. If you
-> don't know that this means, just convert it to a PNG or JPEG file
-> before using it, to prevent it from messing up how the article looks
-> in different browsers, on phones, etc.
->
-> Let me know if any of that is not clear.
->
-> Best,
->
-> Bruno
->
->
-> ---------- Forwarded message ----------
-> From: Kelly Jane McGill <kmcgill@stanford.edu>
-> Date: Wed, Jan 6, 2016 at 12:14 PM
-> Subject: Re: [lets-talk-science] How to Format Finished Articles for Publishing
-> To: Bruno Beltran <brunobeltran0@gmail.com>
->
->
-> How do you add your own charts or images (power point figures) to
-> markdown? Plain text gets rid of the image and if there is no link,
-> how can you add it to a markdown document?
->
-> Thanks,
-> Kelly
->
-> ________________________________________
-> From: lets-talk-science <lets-talk-science-bounces@lists.stanford.edu>
-> on behalf of Bruno Beltran <brunobeltran0@gmail.com>
-> Sent: Tuesday, January 5, 2016 8:26 PM
-> To: lets-talk-science@mailman.stanford.edu
-> Subject: [lets-talk-science] How to Format Finished Articles for Publishing
->
-> Hey again guys!
->
-> Short version: Please submit each article as a zipped folder
-> containing both all the media (e.g. pictures/figures) and a single
-> markdown file with the article's contents. You can learn how to use
-> markdown in approximately 143 seconds on
-> https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet and
-> test that your file looks good on https://stackedit.io/editor.
->
-> Long version:
->
-> A quick update on the file format we're going to want the articles in,
-> since some of you have started writing.
->
-> Each group is free to (and should) use whatever format (e.g. Word,
-> plain text, LaTeX+git) makes it easiest for your groups to get the
-> articles written and reviewed. When it comes time for you to submit,
-> however, the process of making it look like you want will require that
-> you use a web-friendly format. In order to minimize the amount of work
-> this will take, we will use "Markdown" syntax to specify the article's
-> formatting. Don't be afraid, this does not involve programming,
-> learning a new language, or knowing how to cartwheel. The syntax will
-> be familiar to anyone that has posted in a forum, reddit, Github, or
-> other website that allows formatting comments/posts.
->
-> The best way to explain how it works is to simply point you to a cheat
-> sheet that shows you how to do everything you could possibly want,
-> from italics and bolding to tables, links and images:
->
-> https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
->
-> and a site that lets you type in markdown and shows you what it would
-> look like on the web, with some built in examples:
->
-> https://stackedit.io/editor
->
-> In practice, the only thing to keep in mind is that you'll need to put
-> two newlines (i.e. hit enter twice) every time you want to start a new
-> paragraph.
->
-> Please, when submitting an article, put a single markdown or plain
-> text file (preferably with file ending ".md") in a folder with all the
-> pictures/videos/media that are going to be included in the article,
-> zip the folder, and send the zip file to me.
->
-> Let me know if there are any questions, and I am happy to help both
-> with any technical difficulties that will inevitably arise and with
-> getting any particularly fancy formatting to work.
-\end{verbatim}
+\url{https://stackedit.io/editor}
 
-\section{Copyright Law}
+In practice, the only thing to keep in mind is that you'll need to put
+two newlines (i.e.\ hit enter twice) every time you want to start a new
+paragraph, and everything else can be looked up easily on the
+\href{https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet}{cheatsheet}.
 
-This is fairly easy to summarize. If you didn't make it and it's not explicitly
-marked as Creative Commons (for reuse) or public domain from a credible source,
-then you have to ask the person that owns it for permission.
+Various people have found
+that a relatively efficient way to get the article formatted is to just copy/paste
+from word into \href{https://stackedit.io/editor}{StackEdit} and fix the few problems that appear. More advanced users
+might want to try using an automatic conversion tool like
+\href{http://pandoc.org/demos.html}{Pandoc} or the
+\href{http://www.writage.com/}{``Writage''} plugin.
 
-In particular, this means that if you want to reproduce a figure from a journal,
-you \textbf{must} ask the journal's permission since usually the journal is the
-copyright holder and not the author.
+\subsubsection{Images}\label{sec:image-links}
+In order to get an image in your article, simply include it in the
+\texttt{``images''} subfolder of your post as demonstrated by
+Figure~\ref{fig:folder-structure}. Then, the usual syntax for including a
+picture in a Markdown document should work using the relative file path
+(i.e.\ starting with ``\texttt{./images/}'').
+
+For example, to create a link to ``\texttt{image1.png}'' in the example in
+Figure~\ref{fig:folder-structure}, one would, inside of \texttt{post.md}, use
+the syntax
+
+\begin{verbatim}![alt text](./images/image1.png "hover text")\end{verbatim}
+
+The text \texttt{alt text} will then appear as a stand-in if the image fails to
+load or loads too slowly, and the text \texttt{hover text} will appear if the
+reader hovers their mouse over the image.
+
+When composing the article, it might be helpful to use an external tool like
+\href{https://stackedit.io/editor}{StackEdit} to view your article as you type.
+If you want to also see your images to get a rough idea of how they will appear
+in the article, you have to provide a valid link to the file such that the
+program that you're using can find the image. For example, when using
+\href{https://stackedit.io/editor}{StackEdit}, the easiest solution is to upload
+the images to an online file sharing program like Dropbox and use the dropbox
+link instead of \texttt{./images/image1.png} in the example above while you're
+writing the article. Just make sure that the version of the Markdown file that you
+submit to the editor has the links formatted as in the example above.
+
+Finally, remember that on the web, portable formats are king. Vectorized graphics are
+especially nice to have. In rough order of decreasing preference, please use one
+SVG, PNG, or JPG/JPEG formatted files. If you have a graphic in another format,
+for example from illustrator/inkscape, photoshop/gimp, or powerpoint (shame on
+you!) then please convert it to one of the three above formats unless you
+understand the implications.
+
 
 %%% End document
 \end{document}
