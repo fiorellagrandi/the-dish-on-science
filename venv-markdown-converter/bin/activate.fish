@@ -32,7 +32,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/var/www/thedishonscience.com/venv-markdown-converter"
+set -gx VIRTUAL_ENV "/afs/ir.stanford.edu/group/thedishonscience/venv-markdown-converter"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
