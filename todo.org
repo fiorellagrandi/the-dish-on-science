@@ -1,5 +1,7 @@
 * TODO Finish website
   * Immediate Goals
+    ** make a markdown template for the articles
+    ** make the most popular articles into "most popular of the month" instead
     ** FIX articles not having the correct date
     ** the author lists with many authors look ugly when width of screen gets small, figure out how to reflow
     ** make description field 500 characters, blurb 100 characters. Make actual fields big enough for biggest existing article desription.

@@ -298,8 +298,8 @@ class Post(Base):
 #    os.path.join(sql_dir, '.mylogin.cnf')})
 #TODO find prettier way to do this
 #connection_url = str(myDB) + "&charset=utf8"
-#connection_url = "mysql://gthedishonscie:xaveir123@g-thedishonscience-dish-website.sudb.stanford.edu/g_thedishonscience_dish_website?charset=utf8"
-connection_url = "mysql+pymysql://gthedishonscie:xaveir123@localhost/g_thedishonscience_dish_website?charset=utf8"
+#connection_url = "mysql://gthedishonscie:***REMOVED***@g-thedishonscience-dish-website.sudb.stanford.edu/g_thedishonscience_dish_website?charset=utf8"
+connection_url = "mysql+pymysql://gthedishonscie:***REMOVED***@localhost/g_thedishonscience_dish_website?charset=utf8"
 engine = sa.create_engine(name_or_url=connection_url, echo=False)
 Base.metadata.create_all(engine)
 Session.configure(bind=engine)
